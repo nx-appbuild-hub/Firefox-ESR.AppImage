@@ -27,11 +27,14 @@ all: clean init
 
 	cp --force --recursive $(PWD)/build/firefox $(PWD)/build/Boilerplate.AppDir
 
-	rm --force $(PWD)/build/Boilerplate.AppDir/*.desktop
+	rm --force $(PWD)/build/Boilerplate.AppDir/*.desktop 		      || true
+	rm --force $(PWD)/build/Boilerplate.AppDir/*.png 		  	      || true
+	rm --force $(PWD)/build/Boilerplate.AppDir/*.svg 		  	      || true
+	rm --force $(PWD)/build/Boilerplate.AppDir/lib64/libstdc++.so.6*  || true
 
-	cp --force $(PWD)/AppDir/*.desktop $(PWD)/build/Boilerplate.AppDir/
-	cp --force $(PWD)/AppDir/*.png $(PWD)/build/Boilerplate.AppDir/      || true
-	cp --force $(PWD)/AppDir/*.svg $(PWD)/build/Boilerplate.AppDir/      || true
+	cp --force $(PWD)/AppDir/*.desktop  $(PWD)/build/Boilerplate.AppDir/      || true
+	cp --force $(PWD)/AppDir/*.png      $(PWD)/build/Boilerplate.AppDir/      || true
+	cp --force $(PWD)/AppDir/*.svg      $(PWD)/build/Boilerplate.AppDir/      || true
 
 	export ARCH=x86_64 && $(PWD)/bin/appimagetool.AppImage $(PWD)/build/Boilerplate.AppDir $(PWD)/Firefox-ESR.AppImage
 	chmod +x $(PWD)/Firefox-ESR.AppImage
